@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const items = require('./routes/api/items');
+const expenses = require('./routes/api/expenses');
 
 //bodyParser middleware
 app.use(bodyParser.json());
@@ -13,14 +14,17 @@ app.use(bodyParser.json());
 const db = require('./config/keys.js').mongoURI;
 
 //Connect to DB
-mongoose.connect(db).then(() => {
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
   console.log('connected to MongoDB...');
 }).catch((err) => {
   console.log('Error connecting to MongoDB => ' + err);
 })
 
+
 //Use Routes
-app.use('api/items', items);
+app.use('/api/items', items);
+
+app.use('/api/expenses', expenses);
 
 app.get('/api/customers', (req, res) => {
   const customers = [

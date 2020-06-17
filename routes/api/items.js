@@ -15,4 +15,19 @@ router.get('/', (req, res) => {
     })
 });
 
+// @route POST api/items
+// @desc create a items
+// @access Public
+
+router.post('/', (req, res) => {
+    const newItem = new Item({ name: req.body.name });
+
+    newItem.save().then(item => {
+        console.log('Saved item' , item);
+        res.json(item);
+    }).catch(err => {
+        console.log('Error saving record ' , err);
+    })
+});
+
 module.exports = router;

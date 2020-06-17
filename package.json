@@ -1,7 +1,7 @@
 {
-  "name": "reactexpress",
+  "name": "expense-tracker-dev",
   "version": "1.0.0",
-  "description": "Starter kit for creating React and Express apps",
+  "description": "Sample expense tracker dev",
   "main": "server.js",
   "scripts": {
     "client-install": "cd client && npm install",
@@ -10,7 +10,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Brad Traversy",
+  "author": "Simone Martinello",
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^1.14.6"
@@ -19,6 +19,7 @@
     "body-parser": "^1.19.0",
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
-    "mongoose": "^5.9.19"
+    "mongoose": "^5.9.19",
+    "mongodb": "^6.13.2"
   }
 }
