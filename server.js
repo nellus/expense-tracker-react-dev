@@ -4,7 +4,23 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const items = require('./routes/api/items');
+
+//bodyParser middleware
 app.use(bodyParser.json());
+
+//DB config
+const db = require('./config/keys.js').mongoURI;
+
+//Connect to DB
+mongoose.connect(db).then(() => {
+  console.log('connected to MongoDB...');
+}).catch((err) => {
+  console.log('Error connecting to MongoDB => ' + err);
+})
+
+//Use Routes
+app.use('api/items', items);
 
 app.get('/api/customers', (req, res) => {
   const customers = [
@@ -16,6 +32,6 @@ app.get('/api/customers', (req, res) => {
   res.json(customers);
 });
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => `Server running on port ${port}`);
