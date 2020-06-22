@@ -37,7 +37,7 @@ app.get('/api/customers', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile('./client/public/index.html');
+  res.sendFile(__dirname + '/client/public/index.html');
 });
 
 const port = process.env.PORT || 5000;
