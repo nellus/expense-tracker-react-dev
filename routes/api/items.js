@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 // @route POST api/items
-// @desc create a items
+// @desc create a item
 // @access Public
 
 router.post('/', (req, res) => {
@@ -29,5 +29,19 @@ router.post('/', (req, res) => {
         console.log('Error saving record ' , err);
     })
 });
+
+// @route Delete api/items/:id
+// @desc delete a item
+// @access Public
+
+router.delete('/:id', (req, res) => {
+    Item.findById(req.params.id).then(item => {
+        item.remove().then(() => {
+            res.json({success: true});
+        })
+    }).catch(err => {
+        res.status(404).json({success: false});
+    });
+})
 
 module.exports = router;
